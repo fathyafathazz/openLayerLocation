@@ -91,7 +91,7 @@ navigator.geolocation.getCurrentPosition(
 
         // Tambahkan konten pop-up dengan tombol close
         popup.innerHTML = `
-          <button class="close-btn">&times;</button>
+          <i class="fa-solid fa-circle-xmark close-btn"></i>
           <h3>Lokasi Anda</h3>
           <p><strong>Alamat:</strong> ${locationName}</p>
           <p><strong>Koordinat:</strong> ${longitude.toFixed(
@@ -108,7 +108,7 @@ navigator.geolocation.getCurrentPosition(
       })
       .catch(() => {
         popup.innerHTML = `
-          <button class="close-btn">&times;</button>
+          <i class="fa-solid fa-circle-xmark close-btn"></i>
           <h3>Lokasi Anda</h3>
           <p>Data lokasi tidak ditemukan.</p>
           <p><strong>Koordinat:</strong> ${longitude.toFixed(
@@ -176,7 +176,7 @@ map.on("click", function (event) {
 
       // Tambahkan konten pop-up dengan tombol close
       popup.innerHTML = `
-        <button class="close-btn">&times;</button>
+        <i class="fa-solid fa-circle-xmark close-btn"></i>
         <h3>Informasi Lokasi</h3>
         <p><strong>Alamat:</strong> ${locationName}</p>
         <p><strong>Koordinat:</strong> ${longitude.toFixed(
@@ -192,7 +192,7 @@ map.on("click", function (event) {
     })
     .catch(() => {
       popup.innerHTML = `
-        <button class="close-btn">&times;</button>
+        <i class="fa-solid fa-circle-xmark close-btn"></i>
         <h3>Informasi Lokasi</h3>
         <p>Data lokasi tidak ditemukan.</p>
         <p><strong>Koordinat:</strong> ${longitude.toFixed(
@@ -240,7 +240,7 @@ backToLocationButton.onclick = function () {
 
         // Tambahkan konten pop-up dengan tombol close
         popup.innerHTML = `
-          <button class="close-btn">&times;</button>
+          <i class="fa-solid fa-circle-xmark close-btn"></i>
           <h3>Lokasi Anda</h3>
           <p><strong>Alamat:</strong> ${locationName}</p>
           <p><strong>Koordinat:</strong> ${longitude.toFixed(
@@ -257,7 +257,7 @@ backToLocationButton.onclick = function () {
       })
       .catch(() => {
         popup.innerHTML = `
-          <button class="close-btn">&times;</button>
+          <i class="fa-solid fa-circle-xmark close-btn"></i>
           <h3>Lokasi Anda</h3>
           <p>Data lokasi tidak ditemukan.</p>
           <p><strong>Koordinat:</strong> ${longitude.toFixed(
