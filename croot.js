@@ -15,7 +15,9 @@ import Swal from "https://cdn.skypack.dev/sweetalert2";
 const source = new OSM();
 
 // Create TileLayer without source initially
-const layer = new TileLayer();
+const layer = new TileLayer({
+  source: source, // Langsung berikan sumber OSM
+});
 
 // Create Map
 const map = new Map({
@@ -134,11 +136,11 @@ navigator.geolocation.getCurrentPosition(
       });
     });
   },
-  () => {
+  (err) => {
     Swal.fire({
-      title: "Error",
-      text: "Gagal mengambil lokasi. Pastikan Anda memberikan izin akses lokasi.",
-      icon: "error",
+      title: "Akses Lokasi Diperlukan",
+      text: "Gagal mengambil lokasi. Pastikan Anda memberikan izin akses lokasi agar fitur berjalan dengan baik.",
+      icon: "warning",
     });
   }
 );
@@ -216,7 +218,10 @@ backToLocationButton.onclick = function () {
     map.getView().setCenter(userCoordinates);
     map.getView().setZoom(20);
 
-    // Tambahkan marker di lokasi pengguna
+    // Hapus semua marker lama sebelum menambahkan yang baru
+    markerSource.clear();
+
+    // Tambahkan marker kembali di lokasi awal user
     const marker = new Feature({
       geometry: new Point(userCoordinates),
     });
@@ -230,7 +235,10 @@ backToLocationButton.onclick = function () {
     );
     markerSource.addFeature(marker);
 
-    // Ambil informasi lokasi menggunakan API OpenStreetMap
+    // Ambil koordinat lon/lat dari userCoordinates
+    const [longitude, latitude] = toLonLat(userCoordinates);
+
+    // Fetch ulang informasi lokasi user agar kembali seperti awal
     fetch(
       `https://nominatim.openstreetmap.org/reverse?format=json&lon=${longitude}&lat=${latitude}`
     )
@@ -238,7 +246,7 @@ backToLocationButton.onclick = function () {
       .then((data) => {
         const locationName = data.display_name || "Tidak ada data lokasi";
 
-        // Tambahkan konten pop-up dengan tombol close
+        // Update pop-up kembali ke "Lokasi Anda"
         popup.innerHTML = `
           <i class="fa-solid fa-circle-xmark close-btn"></i>
           <h3>Lokasi Anda</h3>
@@ -248,6 +256,7 @@ backToLocationButton.onclick = function () {
           )}, ${latitude.toFixed(6)}</p>
         `;
         overlay.setPosition(userCoordinates);
+        popupVisible = true;
 
         // Event untuk menutup pop-up saat tombol close diklik
         popup.querySelector(".close-btn").addEventListener("click", () => {
@@ -256,6 +265,7 @@ backToLocationButton.onclick = function () {
         });
       })
       .catch(() => {
+        // Jika gagal ambil data lokasi, tetap tampilkan pop-up dengan koordinat saja
         popup.innerHTML = `
           <i class="fa-solid fa-circle-xmark close-btn"></i>
           <h3>Lokasi Anda</h3>
@@ -265,8 +275,8 @@ backToLocationButton.onclick = function () {
           )}, ${latitude.toFixed(6)}</p>
         `;
         overlay.setPosition(userCoordinates);
+        popupVisible = true;
 
-        // Event untuk menutup pop-up secara manual
         popup.querySelector(".close-btn").addEventListener("click", () => {
           overlay.setPosition(undefined);
           popupVisible = false;
