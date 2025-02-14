@@ -99,26 +99,6 @@ main {
     line-height: 1.5;
 }
 
-/* .popup .close-btn {
-    position: absolute;
-    top: 8px;
-    right: 10px;
-    background: #ff4d4d;
-    color: white;
-    border: none;
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    text-align: center;
-    font-size: 16px;
-    line-height: 24px;
-    cursor: pointer;
-    transition: background 0.3s ease;
-}
-
-.popup .close-btn:hover {
-    background: #d63031;
-} */
 .popup .close-btn {
     position: absolute;
     top: 8px;
@@ -178,6 +158,48 @@ footer {
     text-align: center;
     padding: 10px;
     font-size: 0.9rem;
+}
+.btn-location {
+    background-color: white;
+    /* Background putih */
+    color: #3674B5;
+    /* Ikon biru */
+    border: 2px solid #3674B5;
+    /* Tambahkan border biru biar lebih jelas */
+    padding: 10px;
+    border-radius: 50%;
+    /* Tombol bulat */
+    font-size: 1.5rem;
+    width: 45px;
+    /* Ukuran tombol */
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.ol-zoom .ol-zoom-in {
+    display: none;
+}
+.ol-zoom .ol-zoom-out {
+    display: none;
+}
+
+.btn-location:hover {
+    background-color: #f0f0f0;
+    /* Sedikit abu saat hover */
+}
+
+.btn-location i {
+    color: #3674B5;
+    /* Ikon tetap biru */
+    font-size: 1.2rem;
+}
+
+li {
+    display: none;
 }
 
 @media (max-width: 768px) {

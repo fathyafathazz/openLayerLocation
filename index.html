@@ -4,7 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Where Am I</title>
-    <link rel="shortcut icon" href="assets/alternatif.png" type="image/x-icon" />
+    <link
+      rel="shortcut icon"
+      href="assets/alternatif.png"
+      type="image/x-icon"
+    />
     <link rel="stylesheet" href="https://cdn.skypack.dev/ol/ol.css" />
     <link rel="stylesheet" href="style.css" />
 
@@ -23,18 +27,22 @@
 
   <body>
     <header>
-      <h1>Where Am I<img src="assets/alternatif.png" alt="logo" srcset="" /></h1>
+      <h1>
+        Where Am I<img src="assets/alternatif.png" alt="logo" srcset="" />
+      </h1>
       <!-- <p>Control the map layer visibility with the buttons below</p> -->
     </header>
     <main>
       <div id="map"></div>
       <div class="controls">
-        <button id="set-source" class="btn" style="display: none;">Tampilkan Peta</button>
-        <button id="unset-source" class="btn btn-danger" style="display: none;">
+        <button id="set-source" class="btn" style="display: none">
+          Tampilkan Peta
+        </button>
+        <button id="unset-source" class="btn btn-danger" style="display: none">
           Sembunyikan Peta
         </button>
-        <button id="back-to-location" class="btn btn-success">
-          Kembali ke Lokasi Saya
+        <button id="back-to-location" class="btn-location">
+          <i class="fa-solid fa-location-crosshairs"></i>
         </button>
       </div>
     </main>
